@@ -10,7 +10,7 @@ function Post(props) {
   return (
     <View style={styles.container}>
       <Image source={props.image} style={styles.image} />
-      <Author email='hey.wendel95@gmail.com' nickname='Fulano de tal' />
+      <Author email={props.email} nickname={props.nickname} />
       <Comments comments={props.comments} />
       <AddComment />
     </View>
