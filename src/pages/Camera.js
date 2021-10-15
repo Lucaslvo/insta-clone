@@ -3,6 +3,7 @@ import { Camera } from 'expo-camera'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, ImageBackground, Text, View, TouchableOpacity, Alert } from 'react-native'
 
+// inspired on this tutorial -> https://www.freecodecamp.org/news/how-to-create-a-camera-app-with-expo-and-react-native/
 
 
 export default function CameraScreen() {
