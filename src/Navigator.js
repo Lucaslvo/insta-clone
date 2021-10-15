@@ -1,8 +1,11 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import Feed from './pages/Feed'
 import { NavigationContainer } from '@react-navigation/native'
+
+import Feed from './pages/Feed'
+import AddPhoto from './pages/AddPhoto'
+import Camera from './pages/Camera'
 
 
 
@@ -35,8 +38,8 @@ export default function Navigator() {
         })}
       >
         <Tab.Screen name='Feed' component={Feed} />
-        <Tab.Screen name='Home' component={Feed} />
-        <Tab.Screen name='Profile' component={Feed} />
+        <Tab.Screen name='Home' component={AddPhoto} />
+        <Tab.Screen name='Profile' component={Camera} />
       </Tab.Navigator>
     </NavigationContainer>
   )
