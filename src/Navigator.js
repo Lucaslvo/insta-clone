@@ -22,7 +22,7 @@ const MyContext = createContext()
 
 export default function Navigator() {
 
-  const [loginComplete, setLoginComplete] = useState(false)
+  const [loginComplete, setLoginComplete] = useState(true)
   const [newUser, setNewUser] = useState(false)
 
   return (
