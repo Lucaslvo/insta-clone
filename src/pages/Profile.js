@@ -6,13 +6,13 @@ import { CommonActions } from '@react-navigation/native'
 
 function Profile({ loadingComplete }) {
 
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
 
 
 
   const logout = () => {
 
-    console.log(loadingComplete)
+    navigation.navigate('Login')
   }
 
 

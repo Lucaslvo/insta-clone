@@ -10,6 +10,7 @@ import Feed from './pages/Feed'
 import Camera from './pages/Camera'
 import Profile from './pages/Profile'
 import { createContext } from 'react';
+import Register from './pages/Register';
 
 
 
@@ -21,7 +22,8 @@ const MyContext = createContext()
 
 export default function Navigator() {
 
-  const [loginComplete, setLoginComplete] = useState(true)
+  const [loginComplete, setLoginComplete] = useState(false)
+  const [newUser, setNewUser] = useState(false)
 
   return (
     <MyContext.Provider value={{ loginComplete, setLoginComplete }}>
@@ -33,10 +35,10 @@ export default function Navigator() {
                 tabBarIcon: ({ focused, color, size }) => {
                   let iconName;
 
-                  if (route.name === 'Home') {
+                  if (route.name === 'Camera') {
                     iconName = focused
-                      ? 'planet'
-                      : 'planet-outline';
+                      ? 'ios-camera'
+                      : 'ios-camera-outline';
                   } else if (route.name === 'Feed') {
                     iconName = focused ? 'at-circle' : 'at-circle-outline';
                   } else if (route.name === 'Profile') {
@@ -49,15 +51,22 @@ export default function Navigator() {
                 tabBarInactiveTintColor: 'gray',
               })}
             >
-              <Tab.Screen name='Feed' component={Feed} />
-              <Tab.Screen name='Camera' component={Camera} />
-              <Tab.Screen name='Profile' component={Profile} />
+              { <>
+                <Tab.Screen name='Feed' component={Feed} />
+                <Tab.Screen name='Camera' component={Camera} />
+                <Tab.Screen name='Profile' component={Profile} />
+              </>
+
+              }
+
             </Tab.Navigator>
           ) : (
             <Stack.Navigator>
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Auth" component={Feed} />
-
+              {<>
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Register" component={Register} />
+              </>
+              }
             </Stack.Navigator>
           )}
         </View>

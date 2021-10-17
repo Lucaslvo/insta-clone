@@ -19,6 +19,10 @@ function Login() {
     navigation.navigate('Auth')
   }
 
+  const register = () => {
+    navigation.navigate('Register')
+  }
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -39,7 +43,7 @@ function Login() {
       <TouchableOpacity onPress={login} style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { }} style={styles.button}>
+      <TouchableOpacity onPress={register} style={styles.button}>
         <Text style={styles.buttonText}>Criar nova conta</Text>
       </TouchableOpacity>
     </View >
