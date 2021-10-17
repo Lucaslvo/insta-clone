@@ -1,12 +1,21 @@
-import React from 'react'
+import { useNavigation } from '@react-navigation/core'
+import React, { useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
+import { CommonActions } from '@react-navigation/native'
 
-function Profile() {
+function Profile({ loadingComplete }) {
+
+  // const navigation = useNavigation()
+
+
 
   const logout = () => {
 
+    console.log(loadingComplete)
   }
+
+
 
   const options = {
     email: 'obaobauol@uol.br',
