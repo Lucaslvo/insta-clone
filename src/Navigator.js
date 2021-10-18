@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
 
-import Login from './pages/Login'
+import LoginScreen from './pages/LoginScreen'
 import Feed from './pages/Feed'
 import Camera from './pages/Camera'
 import Profile from './pages/Profile'
@@ -22,59 +22,52 @@ const MyContext = createContext()
 
 export default function Navigator() {
 
-  const [loginComplete, setLoginComplete] = useState(true)
-  const [newUser, setNewUser] = useState(false)
+  const [loginComplete, setLoginComplete] = useState(false)
+  const [newUser, setNewUser] = useState(true)
 
   return (
-    <MyContext.Provider value={{ loginComplete, setLoginComplete }}>
-      <NavigationContainer>
-        <View style={{ flex: 1 }}>
+    <NavigationContainer>
+      <View style={{ flex: 1 }}>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === 'Camera') {
+                iconName = focused
+                  ? 'ios-camera'
+                  : 'ios-camera-outline';
+              } else if (route.name === 'Feed') {
+                iconName = focused ? 'at-circle' : 'at-circle-outline';
+              } else if (route.name === 'Profile') {
+                iconName = focused ? 'person-circle' : 'person-circle-outline';
+              } else if (route.name === 'Login') {
+                iconName = focused ? 'ios-log-in' : 'ios-log-in-outline'
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            headerShown: false,
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+          })}
+        >
           {loginComplete ? (
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName;
-
-                  if (route.name === 'Camera') {
-                    iconName = focused
-                      ? 'ios-camera'
-                      : 'ios-camera-outline';
-                  } else if (route.name === 'Feed') {
-                    iconName = focused ? 'at-circle' : 'at-circle-outline';
-                  } else if (route.name === 'Profile') {
-                    iconName = focused ? 'person-circle' : 'person-circle-outline';
-                  }
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                },
-                headerShown: false,
-                tabBarActiveTintColor: 'tomato',
-                tabBarInactiveTintColor: 'gray',
-              })}
-            >
-              { <>
-                <Tab.Screen name='Feed' component={Feed} />
-                <Tab.Screen name='Camera' component={Camera} />
-                <Tab.Screen name='Profile' component={Profile} />
-              </>
-
-              }
-
-            </Tab.Navigator>
+            <>
+              <Tab.Screen name='Feed' component={Feed} />
+              <Tab.Screen name='Camera' component={Camera} />
+              <Tab.Screen name='Profile' component={Profile} />
+            </>
           ) : (
-            <Stack.Navigator>
-              {<>
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Register" component={Register} />
-              </>
-              }
-            </Stack.Navigator>
+            <>
+              <Tab.Screen name='Feed' component={Feed} />
+              <Tab.Screen name='Login' component={LoginScreen} />
+            </>
           )}
-        </View>
-
-      </NavigationContainer>
-    </MyContext.Provider>
 
 
+        </Tab.Navigator>
 
+      </View>
+
+    </NavigationContainer >
   )
 }

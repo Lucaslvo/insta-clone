@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/core'
+import { createStackNavigator } from '@react-navigation/stack'
 import React, { useState } from 'react'
 import {
   View,
@@ -8,15 +9,18 @@ import {
   TextInput
 
 } from 'react-native'
+import Register from './Register'
 
-function Login() {
+const Stack = createStackNavigator()
+
+export function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigation = useNavigation();
 
   const login = () => {
-    navigation.navigate('Auth')
+    console.log('oi', navigation.navigate('Feed'))
   }
 
   const register = () => {
@@ -50,6 +54,15 @@ function Login() {
   )
 }
 
+function LoginScreen() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Login' component={Login} />
+      <Stack.Screen name='Register' component={Register} />
+    </Stack.Navigator>
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -75,4 +88,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Login
+export default LoginScreen
