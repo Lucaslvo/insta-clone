@@ -7,6 +7,7 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 
 import LoginScreen from './pages/LoginScreen'
+import Report from './pages/Report'
 import Feed from './pages/Feed'
 import Camera from './pages/Camera'
 import Profile from './pages/Profile'
@@ -58,6 +59,7 @@ function Navigator({ email }) {
             <>
               <Tab.Screen name='Feed' component={Feed} />
               <Tab.Screen name='Login' component={LoginScreen} />
+              <Tab.Screen name='Report' component={Report} />
             </>
           )}
 
