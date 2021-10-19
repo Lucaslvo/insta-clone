@@ -15,7 +15,7 @@ function LoginScreen() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle: false
+        headerTitle: true
       }}
     >
       <Stack.Screen name='LoginUser' component={Login} />

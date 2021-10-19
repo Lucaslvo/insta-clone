@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
+import { connect } from 'react-redux'
 
 import LoginScreen from './pages/LoginScreen'
 import Feed from './pages/Feed'
@@ -20,10 +21,7 @@ const MyContext = createContext()
 
 
 
-export default function Navigator() {
-
-  const [loginComplete, setLoginComplete] = useState(false)
-  const [newUser, setNewUser] = useState(true)
+function Navigator({ email }) {
 
   return (
     <NavigationContainer>
@@ -50,7 +48,7 @@ export default function Navigator() {
             tabBarInactiveTintColor: 'gray',
           })}
         >
-          {loginComplete ? (
+          {email ? (
             <>
               <Tab.Screen name='Feed' component={Feed} />
               <Tab.Screen name='Camera' component={Camera} />
@@ -71,3 +69,13 @@ export default function Navigator() {
     </NavigationContainer >
   )
 }
+
+const mapStateToProps = ({ user }) => {
+  return {
+    email: user.email,
+    name: user.name,
+
+  }
+}
+
+export default connect(mapStateToProps, null)(Navigator)

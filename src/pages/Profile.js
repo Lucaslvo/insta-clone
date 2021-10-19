@@ -1,33 +1,30 @@
 import { useNavigation } from '@react-navigation/core'
-import React, { useContext } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
+import { logout } from '../store/actions/user'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 import { CommonActions } from '@react-navigation/native'
 
-function Profile({ loadingComplete }) {
+function Profile({ onLogout, email, name }) {
 
   const navigation = useNavigation()
 
-
-
   const logout = () => {
-
-    navigation.navigate('Login')
+    onLogout()
   }
 
-
-
   const options = {
-    email: 'obaobauol@uol.br',
+    email: email,
     secure: true
   }
 
   return (
     <View style={styles.container}>
       <Gravatar options={options} style={styles.avatar} />
-      <Text style={styles.nickname}>Oba Oba
+      <Text style={styles.nickname}>{name}
       </Text>
-      <Text style={styles.email}>Oba um e-mail
+      <Text style={styles.email}>{email}
       </Text>
       <TouchableOpacity
         onPress={logout}
@@ -77,4 +74,18 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Profile
+const mapStateToProps = ({ user }) => {
+  return {
+    email: user.email,
+    name: user.name,
+
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogout: () => dispatch(logout())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
