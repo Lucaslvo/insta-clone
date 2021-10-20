@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { addPost } from '../store/actions/posts'
+
 import { Camera } from 'expo-camera'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, ImageBackground, Text, View, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, ImageBackground, Text, View, TouchableOpacity, Alert, Image, Dimensions } from 'react-native'
 
 // inspired on this tutorial -> https://www.freecodecamp.org/news/how-to-create-a-camera-app-with-expo-and-react-native/
 
 
-export default function CameraScreen() {
+function CameraScreen({ onAddPost, name, email }) {
+
+  const [comment, setComment] = useState('teste')
 
   const [startCamera, setStartCamera] = useState(false)
   const [previewVisible, setPreviewVisible] = useState(false)
@@ -42,7 +47,18 @@ export default function CameraScreen() {
   }
 
   const savePhoto = async () => {
-
+    onAddPost({
+      id: Math.random(),
+      nickname: name,
+      email: email,
+      image: capturedImage,
+      comments: [{
+        nickname: name,
+        comment: comment
+      }]
+    })
+    console.log(capturedImage)
+    setStartCamera(false)
   }
 
   const handleFlashMode = () => {
@@ -279,6 +295,13 @@ export default function CameraScreen() {
           </Text>
 
           </TouchableOpacity>
+          <View>
+            {capturedImage ? (
+              <Image source={capturedImage} style={styles.image} />
+            ) : (
+              <Text>Tire a foto para aparecer aqui</Text>
+            )}
+          </View>
 
 
         </View>
@@ -295,5 +318,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  image: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').width * 3 / 4,
+    resizeMode: 'contain'
   }
 })
+
+const mapStateToProps = ({ user }) => {
+  return {
+    email: user.email,
+    name: user.name
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPost: post => dispatch(addPost(post))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CameraScreen)

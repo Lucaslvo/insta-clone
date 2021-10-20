@@ -54,12 +54,13 @@ function Navigator({ email }) {
               <Tab.Screen name='Feed' component={Feed} />
               <Tab.Screen name='Camera' component={Camera} />
               <Tab.Screen name='Profile' component={Profile} />
+              <Tab.Screen name='Report' component={Report} />
             </>
           ) : (
             <>
               <Tab.Screen name='Feed' component={Feed} />
               <Tab.Screen name='Login' component={LoginScreen} />
-              <Tab.Screen name='Report' component={Report} />
+
             </>
           )}
 

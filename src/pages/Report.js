@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { connect } from 'react-redux'
+import { addPost } from '../store/actions/posts'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Button, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 
-export default function Report() {
+
+
+function Report() {
   const [categoria, setCategoria] = useState('')
   const [titulo, setTitulo] = useState('')
   const [endereco, setEndereco] = useState('')
@@ -14,9 +18,8 @@ export default function Report() {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
-  const pressionado = () => {
-    Alert.alert('Fui clicado', date.toLocaleDateString())
-  }
+
+
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -54,8 +57,17 @@ export default function Report() {
             padding: 10,
             backgroundColor: '#4286e4'
           }}
-          onPress={pressionado}>
-          <Text>Clica pra ver uma coisa</Text>
+          onPress={save}>
+          <Text>Salvar dados</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            marginTop: 30,
+            padding: 10,
+            backgroundColor: '#4286e4'
+          }}
+          onPress={openCamera}>
+          <Text>Abrir camera</Text>
         </TouchableOpacity>
       </>
 
@@ -96,3 +108,5 @@ const styles = StyleSheet.create({
     width: 350
   }
 })
+
+export default Report
