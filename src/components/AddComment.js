@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { addComment } from '../store/actions/posts'
 import {
   View,
   Text,
@@ -11,10 +13,22 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
-function AddComment() {
+function AddComment(props) {
   const [editMode, setEditMode] = useState(false)
   const [comment, setComment] = useState('')
   let commentArea = null
+
+  const handleAddComment = () => {
+    props.onAddComment({
+      postId: props.postId,
+      comment: {
+        nickname: props.name,
+        comment: comment
+      }
+    })
+    setComment('')
+    setEditMode(false)
+  }
 
   if (editMode) {
     commentArea = (
@@ -25,8 +39,9 @@ function AddComment() {
           placeholder='Adicione um comentario'
           style={styles.input}
           onChangeText={comment => { setComment(comment) }}
-          onSubmitEditing={evt => { Alert.alert('oi', comment) }}
+          onSubmitEditing={handleAddComment}
         />
+        {console.log(props)}
         <TWF onPress={() => setEditMode(false)}>
           <Icon name='times' size={15} color='#555' />
         </TWF>
@@ -73,4 +88,16 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddComment
+const mapStateToProps = ({ user }) => {
+  return {
+    name: user.name
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddComment: payload => dispatch(addComment(payload))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddComment)

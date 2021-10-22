@@ -6,7 +6,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 
 
-export default function Report() {
+export default function ReportScreen() {
   const [categoria, setCategoria] = useState('')
   const [titulo, setTitulo] = useState('')
   const [endereco, setEndereco] = useState('')
@@ -48,7 +48,7 @@ export default function Report() {
               borderWidth: 1,
               borderColor: '#334257'
             }}
-            
+
             onValueChange={(value) => setCategoria(value)}
             value={categoria}
             placeho

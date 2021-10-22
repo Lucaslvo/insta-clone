@@ -1,18 +1,17 @@
 import React from 'react'
-import { StyleSheet, View, Image, Dimensions } from 'react-native'
+import { View, Image, StyleSheet, Dimensions, Text } from 'react-native'
 
-import Author from './Author'
-import Comments from './Comments'
-import AddComment from './AddComment'
-
-
-function Post(props) {
+export default function Report(props) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.input}>{props.titulo}</Text>
+      <Text>{props.categoria}</Text>
       <Image source={props.image} style={styles.image} />
-      <Author email={props.email} nickname={props.name} />
-      <Comments comments={props.comments} />
+      {console.log(props)}
+      <Text>{props.endereco}</Text>
+      <Text>{props.descricao}</Text>
+
 
     </View>
 
@@ -29,5 +28,3 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   }
 })
-
-export default Post

@@ -2,20 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, FlatList, View } from 'react-native'
 import Header from '../components/Header'
-import Post from '../components/Post'
+import Report from '../components/Report'
 
-function Feed({ posts }) {
+function ReportFeed({ reports }) {
 
   return (
     <View style={styles.container}>
       <Header />
       <FlatList
-        data={posts}
+        data={reports}
         keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => {
           console.log(item)
           return (
-            <Post key={item.id} {...item} />
+            <Report key={item.id} {...item} />
 
           )
         }}
@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ posts }) => {
+const mapStateToProps = ({ reports }) => {
   return {
-    posts: posts.posts
+    reports: reports.reports
   }
 }
 
-export default connect(mapStateToProps)(Feed)
+export default connect(mapStateToProps)(ReportFeed)

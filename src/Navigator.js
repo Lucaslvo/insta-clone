@@ -7,12 +7,13 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 
 import LoginScreen from './pages/LoginScreen'
-import Report from './pages/Report'
+import ReportScreen from './pages/ReportScreen'
 import Feed from './pages/Feed'
 import Camera from './pages/Camera'
 import Profile from './pages/Profile'
 import { createContext } from 'react';
 import Register from './pages/Register';
+import ReportFeed from './pages/ReportFeed';
 
 
 
@@ -51,10 +52,10 @@ function Navigator({ email }) {
         >
           {email ? (
             <>
-              <Tab.Screen name='Feed' component={Feed} />
+              <Tab.Screen name='Feed' component={ReportFeed} />
               <Tab.Screen name='Camera' component={Camera} />
               <Tab.Screen name='Profile' component={Profile} />
-              <Tab.Screen name='Report' component={Report} />
+              <Tab.Screen name='Report' component={ReportScreen} />
             </>
           ) : (
             <>
