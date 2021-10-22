@@ -10,7 +10,7 @@ const initialState = {
       categoria: 'Elétrica',
       titulo: 'Falta de manutenção na área rural',
       endereco: 'Rodovia Comandante João Ribeiro, Chácara Pedro Neto',
-      data: new Date(),
+      data: new Date('11/01/2003'),
       descricao: 'Já faz mais ou menos uns 15 dias que temos instabilidade na região e até agora ninguém deu algum posicionamento sobre isso, já tentamos informar os responsáveis',
 
     },

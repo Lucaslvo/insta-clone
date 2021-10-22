@@ -6,7 +6,7 @@ import {
   Image,
   Text
 } from 'react-native'
-import icon from '../../assets/icon.png'
+import icon from '../../assets/city-rp.png'
 
 import { connect } from 'react-redux'
 import { Gravatar } from 'react-native-gravatar'
@@ -24,7 +24,6 @@ function Header({ name, email }) {
     <View style={styles.container}>
       <View style={styles.rowContainer}>
         <Image source={icon} style={styles.image} />
-        <Text style={styles.title}>Lambe Lambe</Text>
       </View>
       <View style={styles.userContainer}>
         <Text style={styles.user}>{nameUser}</Text>
@@ -44,15 +43,18 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingLeft: 36,
   },
   rowContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   image: {
-    height: 30,
-    width: 30,
-    resizeMode: 'contain'
+    height: 70,
+    width: 70,
+    resizeMode: 'contain',
+    
+  
   },
   title: {
     color: '#000',

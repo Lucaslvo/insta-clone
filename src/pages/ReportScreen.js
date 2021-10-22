@@ -225,9 +225,8 @@ const styles = StyleSheet.create({
   },
   containerInputI: {
     flex: 1,
-    width: 300,
+    width: 290,
     maxHeight: 100,
-    backgroundColor: 'red'
   },
   labeldata: {
     flexDirection: 'row',
